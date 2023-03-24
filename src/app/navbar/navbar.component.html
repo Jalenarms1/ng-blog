@@ -2,12 +2,13 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
-          <a href="#" class="text-white font-bold text-xl">My Blog</a>
+          <a routerLink="/" class="text-white font-bold text-xl">Blogger</a>
         </div>
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-4">
-            <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a routerLink="user" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Profile</a>
+            <a routerLink="/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a *ngIf="loggedIn" routerLink="user" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Profile</a>
+            <p *ngIf="!loggedIn" (click)="toggleModal()" class="text-gray-300 cursor-pointer hover:text-white px-3 py-2 rounded-md text-sm font-medium">Profile</p>
             <p *ngIf="!loggedIn" (click)="toggleModal()" class="text-gray-300 cursor-pointer hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</p>
             <p *ngIf="loggedIn" (click)="logout()"  class="text-gray-300 cursor-pointer hover:text-white px-3 py-2 rounded-md text-sm font-medium">Logout</p>
           </div>

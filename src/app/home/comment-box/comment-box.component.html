@@ -1,0 +1,59 @@
+<div class=" rounded-lg shadow-lg p-4 w-[500px]  h-80">
+    <div class="flex justify-between items-center">
+        <h2 class="text-lg font-medium mb-4">Recent Comments</h2>
+        <button (click)="directTo('posts/' + post.id)" class="bg-zinc-400 px-2  rounded-md hover:bg-zinc-500 shadow-md active:bg-zinc-400 text-white">See more</button>
+    </div>
+    <div class="overflow-auto h-48 w-96">
+      <ul class="divide-y divide-gray-200 flex flex-col justify-end gap-2 h-full pl-3 pb-2">
+        <li *ngIf="post?.comments && post?.comments?.length === 0" class="py-4 pr-3">
+            <div class="flex space-x-3">
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-sm font-medium">None yet.</h3>
+                </div>
+                
+              </div>
+            </div>
+        </li>
+        <li *ngFor="let comment of post?.comments?.slice(0, 2)" class="py-4 pr-3">
+          <div class="flex space-x-3">
+            <img class="h-6 w-6 rounded-full" src="{{comment?.user?.image}}" alt="User avatar">
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-medium">{{comment?.user?.username}}</h3>
+                <p class="text-xs text-gray-500">{{comment.createdAt}}</p>
+              </div>
+              <p class="mt-1 text-sm text-gray-900">{{comment.body}}</p>
+            </div>
+          </div>
+        </li>
+        <!-- <li class="py-4 pr-3">
+          <div class="flex space-x-3">
+            <img class="h-6 w-6 rounded-full" src="https://via.placeholder.com/150" alt="User avatar">
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-medium">Jane Doe</h3>
+                <p class="text-sm text-gray-500">1 day ago</p>
+              </div>
+              <p class="mt-1 text-sm text-gray-900">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+            </div>
+          </div>
+        </li> -->
+        <!-- More comments... -->
+      </ul>
+    </div>
+    <form class="">
+      <div class="flex space-x-3" *ngIf="loggedIn">
+        <img class="h-8 w-8 rounded-full" src="{{user.image}}" alt="User avatar">
+        <div class="flex-1">
+          <div class="relative rounded-md shadow-sm">
+            <textarea style="resize: none;" [(ngModel)]="comment" id="comment" name="comment" class="form-input rounded-md py-3 px-4 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="Add a comment"></textarea>
+          </div>
+        </div>
+        <button (click)="submitComment()" type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 transition duration-150 ease-in-out">
+          Post
+        </button>
+      </div>
+    </form>
+  </div>
+  

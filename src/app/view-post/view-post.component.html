@@ -1,0 +1,50 @@
+<div class="container mx-auto py-8 px-5">
+    
+    <div class="flex items-center mb-4 ">
+      <img class="w-28 h-w-28 rounded-full mr-4" src="{{post.user?.image}}" alt="Author profile image">
+      <div>
+        <h1 class="text-2xl font-bold">{{post.title}}</h1>
+        <p class="text-gray-500">{{post.user?.username}}</p>
+        <p class="text-gray-500">{{post.createdAt}}</p>
+      </div>
+    </div>
+  
+    <div class="prose max-w-full">
+      <p>{{post.body}}</p>
+      <p></p>
+    </div>
+  
+    <hr class="my-8">
+  
+    <h2 *ngIf="post.comments && post.comments && post.comments.length > 0" class="text-xl font-bold mb-4">{{post.comments.length}} comment(s)</h2>
+    <p *ngIf="post.comments && post.comments && post.comments.length < 1" class="text-xl font-bold mb-4">0 comments</p>
+  
+    <div class="space-y-4">
+        <div *ngIf="post.comments && post.comments && post.comments.length > 0" class="flex flex-col gap-6">
+            <div *ngFor="let comment of post.comments" class="comment flex">
+                <img class="w-10 h-10 rounded-full mr-4" src="{{comment?.user?.image}}" alt="Comment author profile image">
+                <div class="flex flex-col gap-2">
+                    <p class="text-gray-500">{{comment?.user?.username}}</p>
+                    <p>{{comment.body}}</p>
+                    <p class="text-gray-500 text-xs">{{comment.createdAt}}</p>
+                </div>
+
+            </div>
+            <!-- <div class="comment flex">
+                <img class="w-10 h-10 rounded-full mr-4" src="https://via.placeholder.com/50" alt="Comment author profile image">
+                <div>
+                    <p class="text-gray-500">Comment Author Name</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id elit vel elit rhoncus ultrices. Nulla facilisi. Maecenas posuere eleifend sem eget sagittis.</p>
+                    <p class="text-gray-500">March 21, 2023</p>
+                </div>
+
+            </div> -->
+        </div>
+        <div class="add-comment flex flex-col gap-4">
+            <textarea [(ngModel)]="comment" name="comment" id="comment" cols="30" rows="8" class="border-2 w-full rounded-md p-1" placeholder="Add a comment here..."></textarea>
+            
+            <button (click)="submitComment()" class="bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-500 text-white px-2 py-1 rounded-md w-1/4">Submit</button>
+        </div>
+        
+    </div>
+</div>

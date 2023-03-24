@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JwtServiceService } from '../jwt.service';
+import { JwtServiceService } from '../../services/jwt.service';
 import { Subscription } from 'rxjs';
 
 

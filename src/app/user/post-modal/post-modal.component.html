@@ -11,16 +11,38 @@
       <!-- Modal Header -->
       <div class="text-center mb-2 flex justify-center">
         <div class="flex border rounded-lg shadow-md shadow-zinc-500 relative">
-        </div>
+      </div>
     </div>
     <!-- Modal Body -->
     <div class="mb-4 relative">
+      <button (click)="closeModal()" class="absolute right-[0] top-[-30px] p-1 px-2 rounded-md bg-red-500 active:bg-red-600 text-white">X</button>
+
+      <div>
+        <form class="max-w-lg mx-auto my-8">
+          <p class="text-2xl font-bold mb-5 text-center">New Post </p>
+          <div class="mb-6">
+            <label class="block text-gray-700 font-bold mb-2" for="title">
+              Title <span class="text-red-500">*</span>
+            </label>
+            <input name="postTitle" [(ngModel)]="postTitle" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="title" name="title" type="text" placeholder="Enter the post title" required>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 font-bold mb-2" for="body">
+              Body <span class="text-red-500">*</span>
+            </label>
+            <textarea name="postBody" [(ngModel)]="postBody" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="body" name="body" rows="6" placeholder="Enter the post body" required></textarea>
+          </div>
+          <div class="flex justify-center">
+            <button (click)="submitPost()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
         
-      </div>
       <!-- Modal Footer -->
       <div class="text-right">
         <button
-          
+          (click)="closeModal()"
           class="text-gray-700 hover:text-gray-900"
         >
           Close

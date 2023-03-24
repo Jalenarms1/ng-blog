@@ -6,10 +6,19 @@ export interface CreateUserInput {
 
 export interface User {
     id: string,
-    name: string,
+    username: string,
     image: string,
     createdAt: string,
-    posts: Post[]
+    posts: Post[],
+    comments: Comment[]
+}
+
+export interface UserResponse {
+    id: string,
+    username: string,
+    image: string,
+    createdAt: string,
+    posts: PostResponse
 }
 
 export interface AuthUserResponse {
@@ -22,9 +31,8 @@ export interface Post {
     title: string,
     body: string,
     userId: string,
-    user: User,
-    commentId: string,
-    comment: Comment,
+    user?: User,
+    comments?: Comment[],
     createdAt: string
 }
 
@@ -40,7 +48,12 @@ export interface Comment {
     
 }
 
-export interface TeamResponse {
-    $id: number,
+export interface PostResponse {
+    $id: string,
+    $values: Post[]
+}
+
+export interface CommentResponse {
+    $id: string,
     $values: Comment[]
 }

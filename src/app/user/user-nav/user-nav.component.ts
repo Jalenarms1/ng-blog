@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { User } from 'src/app/models';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { User, UserResponse } from 'src/app/models';
 
 @Component({
   selector: 'app-user-nav',
@@ -8,9 +8,28 @@ import { User } from 'src/app/models';
 })
 export class UserNavComponent implements OnInit {
   @Input() user: User = {} as User
+  showPostModal: boolean = false;
+  showEditUserModal: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onPostModalClosed() {
+    this.showPostModal = false
+  }
+
+  toggleModal() {
+    this.showPostModal = !this.showPostModal
+  }
+
+  onEditUserModalClosed() {
+    this.showEditUserModal = false
+  }
+
+  toggleEditUserModal() {
+    this.showEditUserModal = !this.showEditUserModal
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input,  EventEmitter, Output } from '@angular/core';
-import { JwtServiceService } from '../jwt.service';
-import { UserService } from '../user.service';
+import { JwtServiceService } from '../../services/jwt.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login-modal',

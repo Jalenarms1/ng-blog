@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-hero-header',
@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hero-header.component.css']
 })
 export class HeroHeaderComponent implements OnInit {
+  showLoginModal: boolean = false;
+  @Input() loggedIn: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleModal() {
+    this.showLoginModal = !this.showLoginModal
+  }
+
+  onLoginModalClosed() {
+    this.showLoginModal = false;
   }
 
 }

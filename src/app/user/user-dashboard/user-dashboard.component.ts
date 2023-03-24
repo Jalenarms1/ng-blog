@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models';
-import { UserService } from 'src/app/user.service';
+import { Post, PostResponse, User, UserResponse } from 'src/app/models';
+import { UserService } from 'src/services/user.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { JwtServiceService } from 'src/app/jwt.service';
+import { JwtServiceService } from 'src/services/jwt.service';
+import { DateFormatService } from 'src/services/date-format.service';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { JwtServiceService } from 'src/app/jwt.service';
 })
 export class UserDashboardComponent implements OnInit {
   user: User = {} as User;
-  constructor(private userService: UserService, private router: Router, private jwtService: JwtServiceService) { }
+  posts: Post[] = []
+  constructor(private userService: UserService, private router: Router, private jwtService: JwtServiceService, private dateFormat: DateFormatService) { }
 
   ngOnInit(): void {
     if(!this.jwtService.isAuthenticated()){
@@ -28,11 +30,26 @@ export class UserDashboardComponent implements OnInit {
       const month = ('0' + (date.getMonth() + 1)).slice(-2);
       const year = date.getFullYear();
       res.createdAt = `${month}/${day}/${year}`
-      
+      res.comments = res.comments?.map(item => {
+        return {...item, createdAt: this.dateFormat.dateAndTime(item.createdAt) as string}
+      })
       
       this.user = res
-      console.log(this.user);
+      res.posts = res.posts.map(item => {
+        const formattedDate = this.dateFormat.dateAndTime(item.createdAt)
+
+        return {...item, createdAt: formattedDate as string}
+      })
+      this.posts = res.posts
+      console.log(this.posts);
     })
   }
+
+  directTo(path: string) {
+    this.router.navigateByUrl(path)
+  }
+  
+
+  
 
 }

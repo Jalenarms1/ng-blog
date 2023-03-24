@@ -15,6 +15,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserNavComponent } from './user/user-nav/user-nav.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 import { PostModalComponent } from './user/post-modal/post-modal.component';
+import { ViewPostComponent } from './view-post/view-post.component';
+import { CommentBoxComponent } from './home/comment-box/comment-box.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { PostModalComponent } from './user/post-modal/post-modal.component';
     LoginModalComponent,
     UserNavComponent,
     UserDashboardComponent,
-    PostModalComponent
+    PostModalComponent,
+    ViewPostComponent,
+    CommentBoxComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
