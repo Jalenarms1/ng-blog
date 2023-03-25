@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { BlogPostService } from 'src/services/blog-post.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-post-modal',
@@ -12,7 +13,7 @@ export class PostModalComponent implements OnInit {
   postBody: string = '';
   @Input() showPostModal: boolean = true
   @Output() toggleModal = new EventEmitter<void>()
-  constructor(private postService: BlogPostService, private router: Router) { }
+  constructor(public postService: BlogPostService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -24,8 +25,10 @@ export class PostModalComponent implements OnInit {
 
   submitPost() {
     this.postService.addPost(this.postTitle, this.postBody)?.subscribe(res => {
-      console.log(res);
-      location.reload()
+      this.postService.postError = false
+      this.postService.getPosts()
+      this.userService.getMe()
+      this.closeModal()
       
     })
   }

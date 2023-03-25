@@ -21,7 +21,7 @@ export class LoginModalComponent implements OnInit {
   hiddenFormClass: string = 'bg-zinc-700 w-[75px] p-1  text-zinc-400';
   isAuthenticated: boolean = false;
   
-  constructor(private userService: UserService, private jwtService: JwtServiceService) { }
+  constructor(public userService: UserService, private jwtService: JwtServiceService) { }
 
   ngOnInit(): void {
     this.jwtService.isAuthenticated$.subscribe((authenticated: boolean) => {

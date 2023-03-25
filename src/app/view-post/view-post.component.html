@@ -40,7 +40,7 @@
 
             </div> -->
         </div>
-        <div class="add-comment flex flex-col gap-4">
+        <div *ngIf="jwt.isAuthenticated()" class="add-comment flex flex-col gap-4">
             <textarea [(ngModel)]="comment" name="comment" id="comment" cols="30" rows="8" class="border-2 w-full rounded-md p-1" placeholder="Add a comment here..."></textarea>
             
             <button (click)="submitComment()" class="bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-500 text-white px-2 py-1 rounded-md w-1/4">Submit</button>

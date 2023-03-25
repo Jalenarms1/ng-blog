@@ -10,21 +10,22 @@ import { UserService } from 'src/services/user.service';
 export class EditUserComponent implements OnInit {
   @Input() showEditUserModal: boolean = true
   @Output() toggleModal = new EventEmitter<void>()
-  user: User = {} as User
+  // user: User = {} as User
   username: string = '';
   imageUrl: string = '';
   currentPassword: string = '';
   newPassword: string = '';
   confirmNewPassword: string = '';
   passwordsDoNotMatch: boolean = false;
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getMe().subscribe(res => {
-      this.user = res
-      this.username = this.user.username
+    // this.userService.getMe().subscribe(res => {
+    //   this.user = res
+    //   this.username = this.user.username
       
-    })
+    // })
+    this.userService.getMe()
   }
 
   closeModal() {
@@ -43,7 +44,7 @@ export class EditUserComponent implements OnInit {
     console.log("Hello");
     
     if(this.imageUrl === ''){
-      this.imageUrl = this.user.image
+      this.imageUrl = this.userService.user.image
     }
     this.userService.updateUsernameAndImage(this.username, this.imageUrl).subscribe(res => {
       location.reload()

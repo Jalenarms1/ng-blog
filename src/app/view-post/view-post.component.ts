@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { JwtServiceService } from 'src/services/jwt.service';
 import { BlogPostService } from '../../services/blog-post.service';
 import { CommentService } from '../../services/comment.service';
 import { DateFormatService } from '../../services/date-format.service';
@@ -14,7 +15,7 @@ export class ViewPostComponent implements OnInit {
   postId: string = ''
   comment: string = ''
   post: Post = {} as Post;
-  constructor(private router: ActivatedRoute, private postService: BlogPostService, private dateFormat: DateFormatService, private commentService: CommentService) { }
+  constructor(private router: ActivatedRoute, private postService: BlogPostService, private dateFormat: DateFormatService, private commentService: CommentService, public jwt: JwtServiceService) { }
 
   ngOnInit(): void {
     this.router.params.subscribe(param => {
