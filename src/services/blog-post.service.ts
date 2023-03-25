@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtServiceService } from './jwt.service';
 import { Post, PostResponse } from '../app/models';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import { DateFormatService } from './date-format.service';
 

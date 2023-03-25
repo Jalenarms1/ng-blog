@@ -1,0 +1,9 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.showBuildDuringDeployPrompt": false,
+    "appService.defaultWebAppToDeploy": "/subscriptions/95aafcfa-7663-4125-b28b-e509048cf702/resourceGroups/ASPBlogClient_group/providers/Microsoft.Web/sites/ASPBlogClient",
+    "appService.deploySubpath": "dist\\ng-blog"
+}
