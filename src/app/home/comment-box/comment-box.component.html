@@ -15,7 +15,7 @@
               </div>
             </div>
         </li>
-        <li *ngFor="let comment of post?.comments?.slice(0, 2)" class="py-4 pr-3">
+        <li *ngFor="let comment of post?.comments?.slice(0, 2)?.reverse()" class="py-4 pr-3 ">
           <div class="flex space-x-3">
             <img class="h-6 w-6 rounded-full" src="{{comment?.user?.image}}" alt="User avatar">
             <div class="flex-1">
@@ -42,18 +42,21 @@
         <!-- More comments... -->
       </ul>
     </div>
-    <form class="">
+    <form class="relative">
+        <p *ngIf="commentService.commentError === post.id" class="text-xs z-10 text-red-600 absolute w-full top-12 left-12">
+            A text value is required
+        </p>
       <div class="flex space-x-3" *ngIf="loggedIn">
-        <img class="h-8 w-8 rounded-full" src="{{user.image}}" alt="User avatar">
+        <img  class="h-8 w-8 rounded-full" src="{{userService.user.image || post.user?.image}}" alt="User avatar">
         <div class="flex-1">
           <div class="relative rounded-md shadow-sm">
-            <textarea style="resize: none;" [(ngModel)]="comment" id="comment" name="comment" class="form-input rounded-md py-3 px-4 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="Add a comment"></textarea>
+            <textarea (input)="removeErrorOnChange()" style="resize: none;" [(ngModel)]="comment" id="comment" name="comment" class="form-input rounded-md py-3 px-4 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="Add a comment"></textarea>
           </div>
         </div>
         <button (click)="submitComment()" type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 transition duration-150 ease-in-out">
-          Post
+            Post
         </button>
-      </div>
+        </div>
     </form>
   </div>
   

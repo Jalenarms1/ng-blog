@@ -32,6 +32,11 @@
             </label>
             <textarea name="postBody" [(ngModel)]="postBody" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="body" name="body" rows="6" placeholder="Enter the post body" required></textarea>
           </div>
+          <div class="error w-full flex justify-center items-center p-2 mb-3">
+            <p *ngIf="postService.postError" class="text-sm text-red-500">
+              Please make sure both fields are filled out.
+            </p>
+          </div>
           <div class="flex justify-center">
             <button (click)="submitPost()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
               Submit

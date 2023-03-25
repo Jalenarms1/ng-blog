@@ -1,26 +1,32 @@
-<app-user-nav [user]="user" ></app-user-nav>
+<app-user-nav [user]="userService.user" ></app-user-nav>
 <section class="py-8">
-    <div class="container mx-auto px-4">
+    <div class=" px-8">
         <h1 class="text-2xl font-bold mb-4">My Posts</h1>
 
-        <table class="table-auto w-full">
+        <table class="table-auto w-3/4">
             <thead>
                 <tr>
                     <th class="px-2 font-semibold py-2 text-left">Posted on</th>
                     <th class="px-2 font-semibold py-2 text-left">Title</th>
                     <th class="px-2 font-semibold py-2 text-left">Comments</th>
-                    <th class="px-2 font-semibold py-2 text-left">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let post of posts" class="cursor-pointer bg-white hover:bg-gray-200" (click)="directTo('posts/' + post.id)">
-                    <td class="shadow shadow-gray-700 px-3  py-2">{{post.createdAt }}</td>
-                    <td class="shadow shadow-gray-700 px-3  py-2">{{post.title}}</td>
-                    <td class="shadow shadow-gray-700 px-3  py-2">{{post?.comments?.length}}</td>
-                    <td class="shadow shadow-gray-700 px-3  py-2">
-                        <a href="#" class="text-blue-500 hover:text-blue-700">Edit</a>
-                        <a href="#" class="text-red-500 hover:text-red-700 ml-2">Delete</a>
-                    </td>
+                <tr *ngFor="let post of userService.userPosts" class="cursor-pointer hover:bg-gray-300 bg-gray-100 " >
+                    <td (click)="directTo('posts/' + post.id)" class="shadow shadow-gray-700 px-3  py-2  ">{{post.createdAt }}</td>
+                    <td (click)="directTo('posts/' + post.id)" class="shadow shadow-gray-700 px-3  py-2 ">{{post.title}}</td>
+                    <td (click)="directTo('posts/' + post.id)" class="shadow shadow-gray-700 px-3  py-2 ">{{post?.comments?.length}}</td>
+                    <div class="flex absolute r-0 ml-2">
+                        <button (click)="toggleModal($event, post)" class="text-blue-500 hover:text-blue-700 bg-transparent  ">
+                            <img src="assets/images/pencil.png" alt="edit-icon" class="w-10 h-w-10 ">
+                        </button>
+                        <button (click)="toggleDeleteModal($event, post)" class="text-blue-500 hover:text-blue-700 bg-transparent  ">
+                            <img src="assets/images/delete.png" alt="edit-icon" class="w-10 h-w-10 ">
+                        </button>
+
+                    </div>
+                    <app-edit-post (toggleModal)="toggleModal($event, post)" *ngIf="showEditPostModal" [post]="selectedPost"></app-edit-post>
+                    <app-delete-post (toggleDeleteModal)="toggleDeleteModal($event, post)" *ngIf="showDeletePostModal" [postId]="selectedPost.id"></app-delete-post>
                 </tr>
                 <!-- <tr class="cursor-pointer">
                     <td class="border px-4 py-2">June 1, 2022</td>
@@ -46,7 +52,7 @@
         <h1 class="text-2xl font-bold mt-8 mb-4">My Comments</h1>
     
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div *ngFor="let comment of user.comments" class="bg-white shadow-md p-4">
+            <div *ngFor="let comment of userService.user.comments" class="bg-white shadow-md p-4">
                 <div class="text-sm text-gray-500">{{comment.createdAt}}</div>
                 <p class="text-gray-800 mt-2">
                     {{comment.body}}

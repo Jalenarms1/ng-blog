@@ -18,6 +18,9 @@ import { PostModalComponent } from './user/post-modal/post-modal.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { CommentBoxComponent } from './home/comment-box/comment-box.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { EditPostComponent } from './user/edit-post/edit-post.component';
+import { DeletePostComponent } from './user/delete-post/delete-post.component';
+import { ViewUserComponent } from './user/view-user/view-user.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
     PostModalComponent,
     ViewPostComponent,
     CommentBoxComponent,
-    EditUserComponent
+    EditUserComponent,
+    EditPostComponent,
+    DeletePostComponent,
+    ViewUserComponent
   ],
   imports: [
     BrowserModule,
