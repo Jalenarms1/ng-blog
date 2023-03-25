@@ -37,7 +37,6 @@ export interface Post {
 }
 
 export interface Comment {
-    $id: number,
     id: string,
     userId: string,
     user: User,

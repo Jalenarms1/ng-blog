@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Post, PostResponse, User, UserResponse } from 'src/app/models';
+import { Post, PostResponse, User, UserResponse, Comment } from 'src/app/models';
 import { UserService } from 'src/services/user.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
@@ -18,6 +18,9 @@ export class UserDashboardComponent implements OnInit {
   selectedPost: Post = {} as Post
   showEditPostModal: boolean = false
   showDeletePostModal: boolean = false
+  selectedComment: Comment = {} as Comment
+  showEditCommentModal: boolean = false
+  showDeleteCommentModal: boolean = false
   constructor(public userService: UserService, private router: Router, private jwtService: JwtServiceService, private dateFormat: DateFormatService) { }
 
   ngOnInit(): void {
@@ -39,10 +42,22 @@ export class UserDashboardComponent implements OnInit {
     this.showEditPostModal = !this.showEditPostModal
   }
 
+  toggleCommentModal(event: Event, comment: Comment) {
+    event.stopPropagation()
+    this.selectedComment = comment
+    this.showEditCommentModal = !this.showEditCommentModal
+  }
+
   toggleDeleteModal(event: Event, post: Post) {
     event.stopPropagation()
     this.selectedPost = post
     this.showDeletePostModal = !this.showDeletePostModal
+  }
+
+  toggleDeleteCommentModal(event: Event, comment: Comment) {
+    event.stopPropagation()
+    this.selectedComment = comment
+    this.showDeleteCommentModal = !this.showDeleteCommentModal
   }
   
   

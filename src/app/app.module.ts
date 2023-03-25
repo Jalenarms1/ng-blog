@@ -22,6 +22,7 @@ import { EditPostComponent } from './user/edit-post/edit-post.component';
 import { DeletePostComponent } from './user/delete-post/delete-post.component';
 import { ViewUserComponent } from './user/view-user/view-user.component';
 import { EditCommentComponent } from './user/edit-comment/edit-comment.component';
+import { DeleteCommentComponent } from './user/delete-comment/delete-comment.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { EditCommentComponent } from './user/edit-comment/edit-comment.component
     EditPostComponent,
     DeletePostComponent,
     ViewUserComponent,
-    EditCommentComponent
+    EditCommentComponent,
+    DeleteCommentComponent
   ],
   imports: [
     BrowserModule,

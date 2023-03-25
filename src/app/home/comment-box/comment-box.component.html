@@ -3,8 +3,8 @@
         <h2 class="text-lg font-medium mb-4">Recent Comments</h2>
         <button (click)="directTo('posts/' + post.id)" class="bg-zinc-400 px-2  rounded-md hover:bg-zinc-500 shadow-md active:bg-zinc-400 text-white">See more</button>
     </div>
-    <div class="overflow-auto h-48 w-96">
-      <ul class="divide-y divide-gray-200 flex flex-col justify-end gap-2 h-full pl-3 pb-2">
+    <div [ngClass]="{'h-48': loggedIn, 'h-60': !loggedIn}" class="overflow-auto h-48 w-96">
+      <ul [ngClass]="{'pb-3': loggedIn}" class="divide-y divide-gray-200 flex flex-col justify-end gap-2 h-full pl-3">
         <li *ngIf="post?.comments && post?.comments?.length === 0" class="py-4 pr-3">
             <div class="flex space-x-3">
               <div class="flex-1">
@@ -42,11 +42,11 @@
         <!-- More comments... -->
       </ul>
     </div>
-    <form class="relative">
+    <form *ngIf="loggedIn" class="relative">
         <p *ngIf="commentService.commentError === post.id" class="text-xs z-10 text-red-600 absolute w-full top-12 left-12">
             A text value is required
         </p>
-      <div class="flex space-x-3" *ngIf="loggedIn">
+      <div class="flex space-x-3" >
         <img  class="h-8 w-8 rounded-full" src="{{userService.user.image || post.user?.image}}" alt="User avatar">
         <div class="flex-1">
           <div class="relative rounded-md shadow-sm">

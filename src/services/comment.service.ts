@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
+import { Comment, Post } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -23,5 +24,18 @@ export class CommentService {
         return throwError(() => new Error('Empty value'))
       })
     );
+  }
+
+  updateComment(id: string, body: string) {
+    const comment = {
+      id,
+      body
+    }
+
+    return this.http.post<Comment>(`${environment.apiUrl}/comments/modify`, comment)
+  }
+
+  deletePost(id: string) {
+    return this.http.delete(`${environment.apiUrl}/comments/${id}`)
   }
 }
