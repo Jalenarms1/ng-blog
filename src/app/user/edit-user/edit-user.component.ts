@@ -44,7 +44,7 @@ export class EditUserComponent implements OnInit {
     console.log("Hello");
     
     if(this.imageUrl === ''){
-      this.imageUrl = this.userService.user.image
+      this.imageUrl = this.userService.user?.image as string
     }
     this.userService.updateUsernameAndImage(this.username, this.imageUrl).subscribe(res => {
       location.reload()

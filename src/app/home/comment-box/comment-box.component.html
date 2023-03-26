@@ -47,7 +47,7 @@
             A text value is required
         </p>
       <div class="flex space-x-3" >
-        <img  class="h-8 w-8 rounded-full" src="{{userService.user.image || post.user?.image}}" alt="User avatar">
+        <img  class="h-8 w-8 rounded-full" src="{{userService.user?.image || post.user?.image}}" alt="User avatar">
         <div class="flex-1">
           <div class="relative rounded-md shadow-sm">
             <textarea (input)="removeErrorOnChange()" style="resize: none;" [(ngModel)]="comment" id="comment" name="comment" class="form-input rounded-md py-3 px-4 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="Add a comment"></textarea>

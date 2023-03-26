@@ -29,6 +29,8 @@ export class UserDashboardComponent implements OnInit {
       return
     }
     this.userService.getMe()
+    
+    
 
   }
   

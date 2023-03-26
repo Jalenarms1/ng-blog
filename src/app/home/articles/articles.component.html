@@ -22,6 +22,12 @@
           <app-comment-box (getPosts)="postService.getPosts()" [post]="post" [loggedIn]="loggedIn" [user]="userService.user" class="w-50 "></app-comment-box>
         </div>
       </li>
+      <li *ngIf="postService.posts?.length === 0 && postService.posts" class=" bg-gray-100 rounded-md  my-2 h-24 p-5">
+        None yet.
+      </li>
+      <li *ngIf="!postService.posts" class=" bg-gray-100 rounded-md  my-2 h-24 p-5">
+        Loading...
+      </li>
       
     </ul>
   </div>

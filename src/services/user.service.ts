@@ -9,8 +9,8 @@ import { DateFormatService } from './date-format.service';
   providedIn: 'root'
 })
 export class UserService {
-  user: User = {} as User;
-  userPosts: Post[] = [];
+  user: User | null = null;
+  userPosts: Post[] | null = null;
   signInError: boolean = false
   constructor(private http: HttpClient, private dateFormat: DateFormatService) { }
 

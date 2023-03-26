@@ -13,7 +13,7 @@ import { UserService } from 'src/services/user.service';
 export class CommentBoxComponent implements OnInit {
   comment: string = '';
   @Input() loggedIn: boolean = false
-  @Input() user: User = {} as User
+  @Input() user: User | null = {} as User
   @Input() post: Post = {} as Post
   @Output() getPosts: EventEmitter<void> = new EventEmitter<void>();
   constructor(public commentService: CommentService, private router: Router, private dateFormat: DateFormatService, public userService: UserService) { }

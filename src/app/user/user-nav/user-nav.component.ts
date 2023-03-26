@@ -7,7 +7,7 @@ import { User, UserResponse } from 'src/app/models';
   styleUrls: ['./user-nav.component.css']
 })
 export class UserNavComponent implements OnInit {
-  @Input() user: User = {} as User
+  @Input() user: User | null = {} as User
   showPostModal: boolean = false;
   showEditUserModal: boolean = false;
 

@@ -11,7 +11,7 @@ import { DateFormatService } from './date-format.service';
   providedIn: 'root'
 })
 export class BlogPostService {
-  posts: Post[] = [];
+  posts: Post[] | null = null;
   postError: boolean = false
   constructor(private http: HttpClient, private jwt: JwtServiceService, private dateFormat: DateFormatService) { }
 

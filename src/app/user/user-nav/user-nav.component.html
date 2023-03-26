@@ -2,10 +2,10 @@
     <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div class="sm:flex sm:items-center sm:justify-between">
         <div class="flex items-center mb-4 sm:mb-0">
-          <img src="{{user.image}}" alt="Profile Picture" class="rounded-full w-36 h-36 mr-4">
+          <img src="{{user?.image}}" alt="Profile Picture" class="rounded-full w-36 h-36 mr-4">
           <div>
-            <h1 class="text-4xl font-bold text-white">Welcome back, {{user.username}}!</h1>
-            <p class="text-gray-400">Thank you for being apart of our blog since {{user.createdAt}}</p>
+            <h1 class="text-4xl font-bold text-white">Welcome back, {{user?.username}}!</h1>
+            <p class="text-gray-400">Thank you for being apart of our blog since {{user?.createdAt}}</p>
           </div>
         </div>
         <div>

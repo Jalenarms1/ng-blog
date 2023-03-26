@@ -2,8 +2,13 @@
 <section class="py-8">
     <div class="w-[90%] mx-auto">
         <h1 class="text-2xl font-bold mb-4">My Posts</h1>
-
-        <table class="table-auto w-3/4">
+        <div *ngIf="!userService.userPosts" class=" bg-gray-100 rounded-md  my-2 h-24 p-5">
+            Loading...
+         </div>
+        <div *ngIf="userService.userPosts?.length === 0 && userService.userPosts" class=" bg-gray-100 rounded-md  my-2 h-24 p-5">
+            None yet.
+         </div>
+        <table *ngIf="userService.userPosts && userService.userPosts!.length > 0" class="table-auto w-3/4">
             <thead>
                 <tr>
                     <th class="px-2 font-semibold py-2 text-left">Posted on</th>
@@ -28,6 +33,7 @@
                     <app-edit-post (toggleModal)="toggleModal($event, post)" *ngIf="showEditPostModal" [post]="selectedPost"></app-edit-post>
                     <app-delete-post (toggleDeleteModal)="toggleDeleteModal($event, post)" *ngIf="showDeletePostModal" [postId]="selectedPost.id"></app-delete-post>
                 </tr>
+                
                 <!-- <tr class="cursor-pointer">
                     <td class="border px-4 py-2">June 1, 2022</td>
                     <td class="border px-4 py-2">My First Post</td>
@@ -50,9 +56,12 @@
         </table>
     
         <h1 class="text-2xl font-bold mt-8 mb-4">My Comments</h1>
+        <div *ngIf="!userService.user?.comments?.length" class=" bg-gray-100 rounded-md  my-2 h-24 p-5">
+            None yet.
+        </div>
     
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div *ngFor="let comment of userService.user.comments" class="bg-white shadow-md p-4">
+            <div *ngFor="let comment of userService.user?.comments" class="bg-white shadow-md p-4">
                 <div class="text-sm text-gray-500">{{comment.createdAt}}</div>
                 <p class="text-gray-800 mt-2">
                     {{comment.body}}
